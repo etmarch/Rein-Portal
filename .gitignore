@@ -1,0 +1,12 @@
+node_modules
+*.log
+
+.idea/.name
+
+*.xml
+
+.idea/codeStyleSettings.xml
+
+.idea/mantra-sample-blog-app.iml
+
+.idea/watcherTasks.xml
