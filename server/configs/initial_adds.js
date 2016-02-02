@@ -1,4 +1,4 @@
-import Colls from '/lib/collections.js';
+import Colls from '/lib/collections/index';
 
 export default function () {
   if (!Colls.Posts.findOne()) {

@@ -1,4 +1,4 @@
-import Colls from '/lib/collections';
+import Colls from '/lib/collections/index';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
