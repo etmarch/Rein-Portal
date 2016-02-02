@@ -6,7 +6,7 @@ const Layout = ({content = () => null }) => (
   <AppCanvas>
       <header>
           <AppBar
-            title={<h2> Portal </h2> }>
+            title={<h2> Rein Portal </h2> }>
               <Navigation />
           </AppBar>
       </header>

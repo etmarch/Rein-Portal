@@ -1,4 +1,4 @@
-import {Posts, Comments} from '/lib/collections';
+import Colls from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
@@ -12,17 +12,17 @@ Meteor.publish('posts.list', function () {
     limit: 10
   };
 
-  return global.posts.find(selector, options);
+  return Colls.Posts.find(selector, options);
 });
 
 Meteor.publish('posts.single', function (postId) {
   check(postId, String);
   const selector = {_id: postId};
-  return global.posts.find(selector);
+  return Colls.Posts.find(selector);
 });
 
 Meteor.publish('posts.comments', function (postId) {
   check(postId, String);
   const selector = {postId};
-  return global.comments.find(selector);
+  return Colls.Comments.find(selector);
 });

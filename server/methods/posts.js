@@ -1,4 +1,4 @@
-import {Posts, Comments} from '/lib/collections';
+import Colls from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
@@ -14,7 +14,7 @@ Meteor.methods({
     // XXX: Do some user authorization
     const createdAt = new Date();
     const post = {_id, title, content, createdAt};
-    global.posts.insert(post);
+    Colls.Posts.insert(post);
   }
 });
 
@@ -31,6 +31,6 @@ Meteor.methods({
     const createdAt = new Date();
     const author = 'The User';
     const comment = {_id, postId, author, text, createdAt};
-    global.comments.insert(comment);
+    Colls.Comments.insert(comment);
   }
 });

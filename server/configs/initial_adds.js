@@ -1,11 +1,11 @@
-import {Posts} from '/lib/collections.js';
+import Colls from '/lib/collections.js';
 
 export default function () {
-  if (!global.posts.findOne()) {
+  if (!Colls.Posts.findOne()) {
     for (let lc = 1; lc <= 5; lc++) {
       const title = `This is the post title: ${lc}`;
       const content = `Post ${lc}'s content is great!`;
-      global.posts.insert({title, content});
+      Colls.Posts.insert({title, content});
     }
   }
 }

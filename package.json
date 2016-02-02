@@ -23,6 +23,7 @@
     "material-ui": "^0.14.3",
     "mocha": "2.x.x",
     "react-addons-test-utils": "^0.14.6",
+    "react-flexbox-grid": "^0.9.4",
     "react-tap-event-plugin": "^0.2.1",
     "sinon": "1.17.x"
   },

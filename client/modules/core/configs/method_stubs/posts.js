@@ -1,4 +1,4 @@
-import {Posts} from '/lib/collections';
+import Colls from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
@@ -14,7 +14,7 @@ export default function () {
         _id, title, content, createdAt,
         saving: true
       };
-      Posts.insert(post);
+      Colls.Posts.insert(post);
     }
   });
 }
