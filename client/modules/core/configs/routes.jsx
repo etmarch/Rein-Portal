@@ -7,6 +7,18 @@ import PostList from '/client/modules/core/containers/postlist';
 import Post from '/client/modules/core/containers/post';
 import NewPost from '/client/modules/core/containers/newpost';
 
+function checkLoggedIn (ctx, redirect) {
+  if (!Meteor.userId()) {
+    redirect('/login');
+  }
+}
+
+function redirectIfLoggedIn (ctx, redirect) {
+  if (Meteor.userId()) {
+    redirect('/');
+  }
+}
+
 export default function (injectDeps) {
   const MainLayoutCtx = injectDeps(MainLayout);
 
@@ -22,6 +34,7 @@ export default function (injectDeps) {
 
   FlowRouter.route('/post/:postId', {
     name: 'posts.single',
+    //triggersEnter: [ checkLoggedIn ],
     action({postId}) {
       mount(MainLayoutCtx, {
         content: () => (<Post postId={postId}/>)

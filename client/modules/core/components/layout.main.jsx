@@ -1,30 +1,30 @@
 import React from 'react';
 import Header from './header.jsx';
+import Footer from './footer.jsx';
 import { AppCanvas, Paper } from 'material-ui';
 
-// Hack for getting flexbox css CDN to load for now..
-var linkInfo = {rel: 'stylesheet', href: '//cdn.jsdelivr.net/flexboxgrid/6.3.0/flexboxgrid.min.css'};
-DocHead.addLink(linkInfo);
 
 const Layout = ({content = () => null }) => (
 
+
   <AppCanvas>
-      <header>
-          <Header />
-      </header>
+      <Header />
+
       <div className="container-fluid">
-          <Paper>
-              <div>
-                  { content() }
+          <div className="row">
+              <div className="col-xs-12">
+                  <div className="box">
+                      <Paper>
+                          { content() }
+                      </Paper>
+                  </div>
               </div>
-          </Paper>
+          </div>
       </div>
-
-      <footer>
-          <div>Built with <a href='https://github.com/kadirahq/mantra'>Mantra</a> & Meteor.</div>
-      </footer>
-
+      <Footer />
   </AppCanvas>
+
+
 
 );
 

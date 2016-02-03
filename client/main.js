@@ -8,6 +8,9 @@ import commentsModule from './modules/comments';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+// Hack for getting flexbox css CDN to load for now..
+var linkInfo = {rel: 'stylesheet', href: '//cdn.jsdelivr.net/flexboxgrid/6.3.0/flexboxgrid.min.css'};
+DocHead.addLink(linkInfo);
 
 // init context
 const context = initContext();

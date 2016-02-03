@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from './navigation.jsx';
 import { AppBar } from 'material-ui';
+import ActionHome from 'material-ui/lib/svg-icons/action/home';
 
 class Header extends React.Component {
 
@@ -10,13 +11,13 @@ class Header extends React.Component {
     }
     render() {
         return (
-          <div>
+          <header>
               <AppBar
                 title={<h2> Rein Portal </h2> }
                 onTitleTouchTap={this.titleClick}
                 iconElementRight={<Navigation />}>
               </AppBar>
-          </div>
+          </header>
         )
     }
 }
