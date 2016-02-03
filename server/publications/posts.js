@@ -5,6 +5,7 @@ import {check} from 'meteor/check';
 
 
 Meteor.publish('posts.list', function () {
+  Meteor._sleepForMs(500);
   const selector = {};
   const options = {
     fields: {_id: 1, title: 1},
