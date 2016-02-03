@@ -1,14 +1,15 @@
 import React from 'react';
+import { List, ListItem } from 'material-ui';
 
 const PostList = ({posts}) => (
   <div className='postlist'>
-    <ul>
+      <List>
       {posts.map(post => (
-        <li key={post._id}>
+        <ListItem key={post._id}>
           <a href={`/post/${post._id}`}>{post.title}</a>
-        </li>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   </div>
 );
 

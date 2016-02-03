@@ -11,6 +11,7 @@ injectTapEventPlugin();
 
 // init context
 const context = initContext();
+console.log(context);
 
 // create app
 const app = createApp(context);
