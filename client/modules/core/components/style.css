@@ -57,6 +57,10 @@ body {
   font-family: 'Roboto', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
 }
 
+#react-root {
+  min-height:100vh;
+}
+
 header {
   border-bottom: 1px solid #EAEAEA;
   padding-bottom: 10px;

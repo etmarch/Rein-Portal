@@ -8,8 +8,8 @@ import Post from '/client/modules/core/containers/post';
 import NewPost from '/client/modules/core/containers/newpost';
 
 function checkLoggedIn (ctx, redirect) {
-  if (!Meteor.userId()) {
-    redirect('/login');
+  if (!Meteor.userId() && !Meteor.loggingIn()) {
+    redirect('/');
   }
 }
 
