@@ -1,6 +1,7 @@
 import React from 'react';
 import Formsy from 'formsy-react';
 const FMUI = require('formsy-material-ui');
+import { FlatButton } from 'material-ui';
 const { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup, FormsySelect, FormsyText, FormsyTime, FormsyToggle } = FMUI;
 
 export default React.createClass({
@@ -56,7 +57,7 @@ export default React.createClass({
                        onChange={this.onChange}
                        ref="form">
 
-              <fieldset>
+
                   {error ?
                     <div className="alert alert-danger" onClick="">
                         <span className="octicon octicon-megaphone" ></span>
@@ -77,6 +78,9 @@ export default React.createClass({
                     validationError="Please provide a valid email address."
 
                   />
+
+                <br />
+
                   <FormsyText
                     {...sharedProps}
                     name="password"
@@ -90,10 +94,10 @@ export default React.createClass({
 
                   />
 
-              </fieldset>
 
+<br />
 
-                  <input className="btn btn-primary block full-width m-b"
+                  <input className="login-submit"
                          formNoValidate={true}
                          disabled={!this.state.canSubmit}
                          type="submit" defaultValue="Login" />

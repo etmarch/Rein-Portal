@@ -1,4 +1,5 @@
 import PostList from '../components/postlist.jsx';
+import Loading from '../components/loading.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context}, onData) => {
@@ -9,7 +10,9 @@ export const composer = ({context}, onData) => {
   }
 };
 
+//const MyLoading = () => (<div>Hmm…</div>)
+
 export default composeAll(
-  composeWithTracker(composer),
+  composeWithTracker(composer, Loading),
   useDeps()
 )(PostList);

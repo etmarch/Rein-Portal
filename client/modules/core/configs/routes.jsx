@@ -24,7 +24,6 @@ function redirectIfLoggedIn(ctx, redirect) {
 export default function (injectDeps) {
     const MainLayoutCtx = injectDeps(MainLayout);
 
-
     FlowRouter.route('/', {
         name: 'posts.list',
         action() {

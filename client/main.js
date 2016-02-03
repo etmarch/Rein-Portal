@@ -23,4 +23,6 @@ app.init();
 Accounts.onLogin(function () {
     FlowRouter.go('/');
     // Seems a bit too simple? more on this later!
-})
+});
+
+
