@@ -31,3 +31,8 @@ Meteor.publish('users.current', function (_id) {
     // console.log ('publish users.current this.userId', this.userId);
     return response;
 });
+
+// Publish roles
+Meteor.publish(null, function (){
+    return Meteor.roles.find({});
+});

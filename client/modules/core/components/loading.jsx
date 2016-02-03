@@ -1,7 +1,5 @@
 import React from 'react';
 
-import CircularProgress from 'material-ui/lib/circular-progress';
-
 var Spinner = require('react-spin');
 
 const spinCfg = {
@@ -9,11 +7,14 @@ const spinCfg = {
     radius: 17,
     speed: 1.6,
     length: 23,
-    color: '#000'
+    top: '40%',
+    color: '#000',
+    //shadow: true, // Whether to render a shadow
+    hwaccel: true // Whether to use hardware acceleration
 };
 
 const Loading = () => (
-  <div style={{'textAlign': 'center'}}>
+  <div style={{'textAlign': 'center', 'minHeight': 400, 'backgroundColor': '#CFD8DC'}}>
       <Spinner config={spinCfg} />
   </div>
 );
