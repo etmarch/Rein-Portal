@@ -67,6 +67,10 @@ header {
   margin-bottom: 30px;
 }
 
+.app-title {
+  cursor: pointer;
+}
+
 footer {
   margin-top: 50px;
   border-top: 1px solid #EAEAEA;
