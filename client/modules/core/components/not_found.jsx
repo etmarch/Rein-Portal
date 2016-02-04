@@ -1,15 +1,15 @@
 import React from 'react';
 import Card from 'material-ui/lib/card/card';
 
-class Dashboard extends React.Component {
+class NotFound extends React.Component {
 
     render() {
         return (
           <Card>
-              <h2>Dashboard for Users</h2>
+              <h2>Page Not Found!</h2>
           </Card>
         )
     }
 }
 
-export default Dashboard;
+export default NotFound;

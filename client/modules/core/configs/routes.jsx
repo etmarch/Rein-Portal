@@ -10,11 +10,12 @@ import Login from '/client/modules/core/components/login.jsx';
 import Invite from '/client/modules/core/components/invite.jsx';
 import Admin from '/client/modules/core/components/admin.jsx';
 import Dashboard from '/client/modules/core/components/dashboard.jsx';
+import NotFound from '/client/modules/core/components/not_found.jsx';
 
 
 function checkLoggedIn(ctx, redirect) {
     if (!Meteor.userId() && !Meteor.loggingIn() || !Roles.userIsInRole(Meteor.userId(), [ 'client', 'admin' ])) {
-        alert('Not logged In');
+        // alert('Not logged In');
         redirect('/login');
     }
 }
@@ -134,4 +135,12 @@ export default function (injectDeps) {
             });
         }
     });
+
+    FlowRouter.notFound = {
+        action: function () {
+            mount(MainLayoutCtx, {
+                content: () => (<NotFound />)
+            });
+        }
+    };
 }

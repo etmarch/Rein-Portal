@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'material-ui';
+import Card from 'material-ui/lib/card/card';
 
 class Invite extends React.Component {
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import Formsy from 'formsy-react';
 const FMUI = require('formsy-material-ui');
-import { FlatButton } from 'material-ui';
-const { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup, FormsySelect, FormsyText, FormsyTime, FormsyToggle } = FMUI;
+import FlatButton from 'material-ui/lib/flat-button';
+const { FormsyText } = FMUI;
 
 export default React.createClass({
 

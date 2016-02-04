@@ -10,19 +10,12 @@ injectTapEventPlugin();
 
 // init context
 const context = initContext();
-console.log(context);
+console.dir(JSON.stringify(context.LocalState));
 
 // create app
 const app = createApp(context);
 app.loadModule(coreModule);
 app.loadModule(commentsModule);
 app.init();
-
-
-// ToDo: move this to proper place
-Accounts.onLogin(function () {
-    FlowRouter.go('/');
-    // Seems a bit too simple? more on this later!
-});
 
 

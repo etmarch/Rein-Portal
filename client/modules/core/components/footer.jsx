@@ -1,6 +1,6 @@
 import React from 'react';
 import Navigation from './navigation.jsx';
-import { Paper } from 'material-ui';
+import Paper from 'material-ui/lib/paper';
 import ActionHome from 'material-ui/lib/svg-icons/action/home';
 
 class Footer extends React.Component {

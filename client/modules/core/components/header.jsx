@@ -1,6 +1,9 @@
 import React from 'react';
 import Navigation from './navigation.jsx';
-import { AppBar, LeftNav, MenuItem, RadioButton } from 'material-ui';
+import AppBar from 'material-ui/lib/app-bar';
+import MenuItem from 'material-ui/lib/menus/menu-item';
+import LeftNav from 'material-ui/lib/left-nav';
+
 import ActionHome from 'material-ui/lib/svg-icons/action/home';
 
 
@@ -18,8 +21,6 @@ export default class Header extends React.Component {
         this.setState({open: false});
     }
 
-    //const handeThis = () => {this.setState({open: false})}
-
 
     titleClick() {
         FlowRouter.go('/');
@@ -28,10 +29,10 @@ export default class Header extends React.Component {
     render() {
 
         // Roles Debugging
-        const userRole = Roles.getRolesForUser( Meteor.userId() );
-        const isInRole = Roles.userIsInRole( this.userId, 'admin' );
-        console.log(userRole);
-        console.log(isInRole);
+        //const userRole = Roles.getRolesForUser( Meteor.userId() );
+        //const isInRole = Roles.userIsInRole( this.userId, 'admin' );
+        //console.log(userRole);
+        //console.log(isInRole);
 
         return (
           <div>

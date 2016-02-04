@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from './header.jsx';
 import Footer from './footer.jsx';
-import { AppCanvas, Paper } from 'material-ui';
+import AppCanvas from 'material-ui/lib/app-canvas';
+import Paper from 'material-ui/lib/paper';
 
 
 const Layout = ({content = () => null }) => (
