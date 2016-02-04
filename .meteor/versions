@@ -54,6 +54,8 @@ meteor@1.1.11-modules.6
 meteor-base@1.0.1
 meteor-env-dev@0.0.1-modules.6
 meteor-env-prod@0.0.1-modules.6
+meteorhacks:kadira@2.27.3
+meteorhacks:meteorx@1.4.1
 minifiers-css@1.1.8-modules.6
 minifiers-js@1.1.8-modules.6
 minimongo@1.0.11-modules.6
@@ -63,6 +65,7 @@ modules@0.5.0-modules.6
 modules-runtime@0.5.0-modules.6
 mongo@1.1.4-modules.6
 mongo-id@1.0.1
+mongo-livedata@1.0.9
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.40-modules.6
 observe-sequence@1.0.8-modules.6
