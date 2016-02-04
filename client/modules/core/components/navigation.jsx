@@ -3,8 +3,9 @@ import React from 'react';
 const Navigation = () => (
   <div>
     <b> Navigations: </b>
-    <a href="/">Home</a> |
-    <a href="/new-post">New Post</a>
+    <a href="/admin">Admin</a> |
+    <a href="/new-post">New Post</a> |
+      <a href="/invite/3453645324">New Post</a>
   </div>
 );
 

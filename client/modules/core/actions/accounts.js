@@ -11,7 +11,7 @@ export default {
             if (err && err.reason) {
                 return LocalState.set('LOGIN_ERROR', err.reason);
             }
-            FlowRouter.go('/account');
+            FlowRouter.go('/');
         });
 
     },
@@ -34,7 +34,7 @@ export default {
             if (err && err.reason) {
                 return LocalState.set('REGISTER_ERROR', err.reason);
             }
-            FlowRouter.go('/home');
+            FlowRouter.go('/');
         });
     },
 

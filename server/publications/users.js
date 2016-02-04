@@ -36,3 +36,9 @@ Meteor.publish('users.current', function (_id) {
 Meteor.publish(null, function (){
     return Meteor.roles.find({});
 });
+
+// Publish Single invite on token page
+Meteor.publish( 'invite', function( token ) {
+    check( token, String );
+    return Invitations.find( { "token": token } );
+});

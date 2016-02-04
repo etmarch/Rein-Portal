@@ -26,6 +26,13 @@ export default class Header extends React.Component {
     }
 
     render() {
+
+        // Roles Debugging
+        const userRole = Roles.getRolesForUser( Meteor.userId() );
+        const isInRole = Roles.userIsInRole( this.userId, 'admin' );
+        console.log(userRole);
+        console.log(isInRole);
+
         return (
           <div>
               <header>

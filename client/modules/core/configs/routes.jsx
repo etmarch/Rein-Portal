@@ -7,11 +7,26 @@ import PostList from '/client/modules/core/containers/postlist';
 import Post from '/client/modules/core/containers/post';
 import NewPost from '/client/modules/core/containers/newpost';
 import Login from '/client/modules/core/components/login.jsx';
+import Invite from '/client/modules/core/components/invite.jsx';
+import Admin from '/client/modules/core/components/admin.jsx';
+import Dashboard from '/client/modules/core/components/dashboard.jsx';
 
 
 function checkLoggedIn(ctx, redirect) {
+    if (!Meteor.userId() && !Meteor.loggingIn() || !Roles.userIsInRole(Meteor.userId(), [ 'client', 'admin' ])) {
+        alert('Not logged In');
+        redirect('/login');
+    }
+}
+
+function checkIfAdmin(ctx, redirect) {
     if (!Meteor.userId() && !Meteor.loggingIn()) {
-        redirect('/');
+        redirect('/login');
+    } else { // redirect client from admin routes
+        if (!Roles.userIsInRole(Meteor.userId(), 'admin')) {
+            alert("Admin Access Only!");
+            redirect('/');
+        }
     }
 }
 
@@ -24,7 +39,38 @@ function redirectIfLoggedIn(ctx, redirect) {
 export default function (injectDeps) {
     const MainLayoutCtx = injectDeps(MainLayout);
 
-    FlowRouter.route('/', {
+    const publicRoutes = FlowRouter.group({
+        name         : 'public',
+        triggersEnter: [ redirectIfLoggedIn ]
+    });
+
+    // Login Route
+    publicRoutes.route('/login', {
+        name: 'login',
+        action() {
+            mount(MainLayoutCtx, {
+                content: () => (<Login />)
+            });
+        }
+    });
+
+
+    publicRoutes.route('/invite/:token', {
+        name: 'invite',
+        action() {
+            mount(MainLayoutCtx, {
+                content: () => (<Invite />)
+            });
+        }
+    });
+
+    // Routes for all protected content
+    const protectedRoutes = FlowRouter.group({
+        name         : 'private',
+        triggersEnter: [checkLoggedIn]
+    });
+
+    protectedRoutes.route('/', {
         name: 'posts.list',
         action() {
             mount(MainLayoutCtx, {
@@ -34,18 +80,7 @@ export default function (injectDeps) {
     });
 
 
-    // Login Route
-    FlowRouter.route('/login', {
-        name         : 'login',
-        triggersEnter: [redirectIfLoggedIn],
-        action() {
-            mount(MainLayoutCtx, {
-                content: () => (<Login />)
-            });
-        }
-    });
-
-    FlowRouter.route('/logout', {
+    protectedRoutes.route('/logout', {
         name: 'logout',
         action() {
             // Accounts.logout();
@@ -55,8 +90,17 @@ export default function (injectDeps) {
         }
     });
 
+    protectedRoutes.route('/dashboard', {
+        name: 'dashboard',
+        action() {
+            mount(MainLayoutCtx, {
+                content: () => (<Dashboard />)
+            });
+        }
+    });
 
-    FlowRouter.route('/post/:postId', {
+
+    protectedRoutes.route('/post/:postId', {
         name: 'posts.single',
         // triggersEnter: [ checkLoggedIn ],
         action({postId}) {
@@ -66,11 +110,27 @@ export default function (injectDeps) {
         }
     });
 
-    FlowRouter.route('/new-post', {
+    protectedRoutes.route('/new-post', {
         name: 'newpost',
         action() {
             mount(MainLayoutCtx, {
                 content: () => (<NewPost/>)
+            });
+        }
+    });
+
+    // Routes for all protected content
+    const adminRoutes = FlowRouter.group({
+        name         : 'admin',
+        prefix       : '/admin',
+        triggersEnter: [checkIfAdmin]
+    });
+
+    adminRoutes.route('/', {
+        name: 'admin',
+        action() {
+            mount(MainLayoutCtx, {
+                content: () => (<Admin />)
             });
         }
     });
