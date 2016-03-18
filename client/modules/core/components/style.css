@@ -7,6 +7,7 @@
    License: none (public domain)
 */
 
+/*
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -26,7 +27,7 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-}
+} */
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -69,7 +70,25 @@ header {
 
 .app-title {
   cursor: pointer;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 16px;
 }
+
+
+
+.demo-card-wide.mdl-card {
+  width: 512px;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: mediumpurple;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
 
 footer {
   margin-top: 50px;
@@ -78,25 +97,4 @@ footer {
   font-size: 12px;
 }
 
-.postlist li {
-  margin: 8px 0;
-}
-
-.postlist li a {
-  text-decoration: none;
-}
-
-.new-post input,
-.new-post textarea {
-  width: 350px;
-  outline: 0;
-  margin-bottom: 5px;
-  border: 1px solid #ddd;
-  font-size: 13px;
-  padding: 4px 6px;
-}
-
-.new-post textarea {
-  height: 200px;
-}
 

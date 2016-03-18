@@ -4,22 +4,25 @@ import AppBar from 'material-ui/lib/app-bar';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import LeftNav from 'material-ui/lib/left-nav';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
+import CardHeader from 'material-ui/lib/card/card-header';
+import CardTitle from 'material-ui/lib/card/card-title';
 import ActionHome from 'material-ui/lib/svg-icons/action/home';
 import IconButton from 'material-ui/lib/icon-button';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 import Badge from 'material-ui/lib/badge';
+import Divider from 'material-ui/lib/divider';
 import NotificationsIcon from 'material-ui/lib/svg-icons/social/notifications';
 import SocialPublic from 'material-ui/lib/svg-icons/social/public';
 import ActionAssessment from 'material-ui/lib/svg-icons/action/assessment';
 import ActionSettings from 'material-ui/lib/svg-icons/action/settings';
 import ActionCardMembership from 'material-ui/lib/svg-icons/action/card-membership';
 import ActionExitToApp from 'material-ui/lib/svg-icons/action/exit-to-app';
-
+import MapsTerrain from 'material-ui/lib/svg-icons/maps/terrain';
 
 export default class Header extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {open: false};
+        this.state = {open: false, name: null};
     }
 
     handleToggle() {
@@ -35,6 +38,11 @@ export default class Header extends React.Component {
         FlowRouter.go('/');
     }
 
+    componentDidMount() {
+        const userName = Meteor.userId() ? Meteor.user().username : 'Not Logged In';
+        this.setState({name: userName});
+    }
+
     render() {
 
         // Roles Debugging
@@ -47,8 +55,18 @@ export default class Header extends React.Component {
           <div>
               <header>
                   <AppBar
-                    title={ <span className="app-title">Rein Portal</span> }
-                    //titleStyle={{ 'cursor': 'pointer', 'display' : 'inline-block' }}
+                    title={
+                    <div>
+                        <MapsTerrain
+                            style={{
+                                'height': 44,
+                                'width': 44,
+                                'marginTop' : -5,
+                                'marginRight': 20
+                            }}
+                            color='rgb(29, 54, 193)' />
+                        <h3 className="app-title display-1 mdl-color-text--white-600">Rein Portal</h3>
+                       </div> }
                     onTitleTouchTap={this.titleClick}
                     iconElementRight={<IconButtonMenu />}
                     onLeftIconButtonTouchTap={this.handleToggle.bind(this)}>
@@ -61,30 +79,41 @@ export default class Header extends React.Component {
                 open={this.state.open}
                 onRequestChange={open => this.setState({open})}
               >
+                  <h4 style={{'textAlign': 'center'}}>{this.state.name}</h4>
                   <MenuItem
                     containerElement={<a href="/dashboard" />}
                     primaryText="Dashboard"
-                    leftIcon={<SocialPublic />}/>
+                    leftIcon={<SocialPublic />}
+                    onTouchTap={this.handleClose.bind(this)}/>
+                  <Divider />
 
                   <MenuItem
-                    containerElement={<a href="/" />}
+                    linkButton
+                    containerElement={<a href="/invite" />}
                     primaryText="Reports"
-                    leftIcon={<ActionAssessment />}/>
+                    leftIcon={<ActionAssessment />}
+                    onTouchTap={this.handleClose.bind(this)}/>
+                  <Divider />
 
                   <MenuItem
                     containerElement={<a href="/" />}
                     primaryText="Billing"
-                    leftIcon={<ActionCardMembership />}/>
+                    leftIcon={<ActionCardMembership />}
+                    onTouchTap={this.handleClose.bind(this)}/>
+                  <Divider />
 
                   <MenuItem
                     containerElement={<a href="/" />}
                     primaryText="Settings"
-                    leftIcon={<ActionSettings />}/>
+                    leftIcon={<ActionSettings />}
+                    onTouchTap={this.handleClose.bind(this)}/>
+                  <Divider />
 
                   <MenuItem
                     containerElement={<a href="/logout" />}
                     primaryText="Sign out"
-                    leftIcon={<ActionExitToApp />} />
+                    leftIcon={<ActionExitToApp />}
+                    onTouchTap={this.handleClose.bind(this)}/>
               </LeftNav>
           </div>
         )
@@ -129,7 +158,7 @@ const IconButtonMenu = () => (
           <MenuItem
             containerElement={<a href="/logout" />}
             primaryText="Sign out"
-            leftIcon={<ActionExitToApp />} />
+            leftIcon={<ActionExitToApp />}/>
       </IconMenu>
   </div>
 );
