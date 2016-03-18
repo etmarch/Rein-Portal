@@ -1,4 +1,5 @@
 // import {Colors} from '/imports/configs/collections';
+import Colls from '/lib/collections/index';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
@@ -40,5 +41,5 @@ Meteor.publish(null, function (){
 // Publish Single invite on token page
 Meteor.publish( 'invite', function( token ) {
     check( token, String );
-    return Invitations.find( { "token": token } );
+    return Colls.Invitations.find( { "token": token } );
 });

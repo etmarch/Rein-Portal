@@ -12,3 +12,9 @@ node_modules
 .idea/watcherTasks.xml
 
 settings.json
+
+.meteor/.finished-upgraders
+
+*.iml
+
+*.iml

@@ -89,11 +89,19 @@ export default class Header extends React.Component {
 
                   <MenuItem
                     linkButton
-                    containerElement={<a href="/invite" />}
+                    containerElement={<a href="/" />}
                     primaryText="Reports"
                     leftIcon={<ActionAssessment />}
                     onTouchTap={this.handleClose.bind(this)}/>
                   <Divider />
+
+                <MenuItem
+                    linkButton
+                    containerElement={<a href="/admin/invite" />}
+                    primaryText="Add New Client"
+                    leftIcon={<ActionAssessment />}
+                    onTouchTap={this.handleClose.bind(this)}/>
+                <Divider />
 
                   <MenuItem
                     containerElement={<a href="/" />}

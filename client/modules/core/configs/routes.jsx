@@ -56,11 +56,11 @@ export default function (injectDeps) {
     });
 
 
-    publicRoutes.route('/invite/:token', {
-        name: 'invite',
-        action() {
+    publicRoutes.route('/enrollment/:token', {
+        name: 'enrollment',
+        action(params) {
             mount(MainLayoutCtx, {
-                content: () => (<Invite />)
+                content: () => (<Invite token={ params.token }/>)
             });
         }
     });
@@ -132,6 +132,15 @@ export default function (injectDeps) {
         action() {
             mount(MainLayoutCtx, {
                 content: () => (<Admin />)
+            });
+        }
+    });
+
+    adminRoutes.route('/invite', {
+        name: 'invite',
+        action() {
+            mount(MainLayoutCtx, {
+                content: () => (<Invite />)
             });
         }
     });

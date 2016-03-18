@@ -10,7 +10,9 @@ injectTapEventPlugin();
 
 // init context
 const context = initContext();
+console.log('main.js -- outputting context and localState');
 console.dir(JSON.stringify(context.LocalState));
+console.dir((context));
 
 // create app
 const app = createApp(context);
