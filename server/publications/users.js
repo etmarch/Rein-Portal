@@ -43,3 +43,4 @@ Meteor.publish( 'invite', function( token ) {
     check( token, String );
     return Colls.Invitations.find( { "token": token } );
 });
+

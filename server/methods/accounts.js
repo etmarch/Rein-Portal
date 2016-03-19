@@ -3,28 +3,42 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
 Meteor.methods({
-  'accounts.sendInvite'(_id, email, content) {
-    check(_id, String);
+  'accounts.sendInvite'( email ) {
     check(email, String);
-    check(content, String);
 
     // Show the latency compensations
     Meteor._sleepForMs(500);
 
-    // Send the token link in email to address provided in form field
-
-    // Accounts.sendEnrollmentEmail ** Maybe can use this function to save time....
-
-    Email.send({
-      to: invite.email,
-      from: 'Test Admin <etmarch@gmail.com.com>',
-      subject: 'Welcome to RGP!',
-      html: SSR.render( 'inviteEmail', {
-        url: urls[ process.env.NODE_ENV ] + invite.token
-      })
+    // Create the account without password
+    const userId = Accounts.createUser( {
+      username: email,
+      email: email 
     });
 
-    // Colls.Invitations.insert(post);
+    if (!userId) {
+      throw new Meteor.Error( 'error-creating-user', 'sendInvite Method Error - user not properly created' );
+    }
+    Roles.addUsersToRoles(userId, ['client']);
+  
+    // Sends an email asking user to pick a password
+    Accounts.sendEnrollmentEmail(userId);
+
+    const inviteData = {
+      userId: userId,
+      email: email,
+      dateInvited: new Date(),
+      accountCreated: false
+    };
+
+    // Create Invitation doc
+    Colls.Invitations.insert(inviteData, function(error) {
+      if (error)
+          throw new Meteor.Error('invite-error', 'Invitation was not created properly '+error);
+
+    });
+  },
+  'accounts.verifyEmail'(token, userId, verificationId) {
+    console.log("SAMPLE VERIFY CODE!");
   }
 });
 

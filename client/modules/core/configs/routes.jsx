@@ -8,6 +8,7 @@ import Post from '/client/modules/core/containers/post';
 import NewPost from '/client/modules/core/containers/newpost';
 import Login from '/client/modules/core/components/login.jsx';
 import Invite from '/client/modules/core/components/invite.jsx';
+import Enrollment from '/client/modules/core/components/enrollment.jsx';
 import Admin from '/client/modules/core/components/admin.jsx';
 import Dashboard from '/client/modules/core/components/dashboard.jsx';
 import NotFound from '/client/modules/core/components/not_found.jsx';
@@ -59,8 +60,9 @@ export default function (injectDeps) {
     publicRoutes.route('/enrollment/:token', {
         name: 'enrollment',
         action(params) {
+            console.log(params.token);
             mount(MainLayoutCtx, {
-                content: () => (<Invite token={ params.token }/>)
+                content: () => (<Enrollment token={ params.token }/>)
             });
         }
     });
