@@ -1,7 +1,7 @@
 import React from 'react';
 import Formsy from 'formsy-react';
 const FMUI = require('formsy-material-ui');
-import FlatButton from 'material-ui/lib/flat-button';
+import RaisedButton from 'material-ui/lib/raised-button';
 const { FormsyText } = FMUI;
 
 export default React.createClass({
@@ -17,7 +17,7 @@ export default React.createClass({
 
   // invalidSubmit(data) {
   invalidSubmit() {
-    // console.log('invalidSubmit', data);
+    console.log('invalidSubmit', data);
   },
 
   enableButton() {
@@ -79,10 +79,14 @@ export default React.createClass({
 
           <br />
 
-          <input className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+          <RaisedButton className="invite-btn"
                  formNoValidate={true}
                  disabled={!this.state.canSubmit}
-                 type="submit" defaultValue="Login" />
+                 type="submit"
+                 defaultValue="Invite"
+                 label="submit"
+                 primary={true}
+          />
 
 
         </Formsy.Form>

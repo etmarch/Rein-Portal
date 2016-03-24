@@ -12,7 +12,6 @@ export default function () {
     FlowRouter,
     Collections,
     LocalState: new ReactiveDict(),
-    Tracker,
-    Accounts
+    Tracker
   };
 }
