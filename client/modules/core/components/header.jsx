@@ -26,6 +26,7 @@ const leftNavMenuItems = [
   { url : '/logout', text : 'Sign Out', icon : <ActionExitToApp /> }
 ];
 
+// Array of menu items for right drop down nav - currently not being used
 const rightNavMenuItems = [
   { url : '/dashboard', text : 'Dashboard', icon : <SocialPublic /> },
   { url : '/admin/invite', text : 'Invite New Client', icon : <ActionAssessment /> },
@@ -51,20 +52,22 @@ export default class Header extends React.Component {
     FlowRouter.go( '/' );
   }
 
-  menuItemRender( menuItems, isLeftNav ) {
+  menuItemRender( menuItems ) {
     return (
         <div>
-          {menuItems.map( ( menuItem, index ) => (
-                  <div key={index}>
-                    <MenuItem
-                        containerElement={<a href={menuItem.url} />}
-                        primaryText={menuItem.text}
-                        leftIcon={menuItem.icon}
-                        onTouchTap={this.handleClose.bind(this)}
-                    />
-                    <Divider />
-                  </div>
-              )
+          {menuItems.map( ( menuItem, index ) => {
+                return (
+                    <div key={`menuItem-${ index }` }>
+                      <MenuItem
+                          containerElement={<a href={menuItem.url} />}
+                          primaryText={menuItem.text}
+                          leftIcon={menuItem.icon}
+                          onTouchTap={this.handleClose.bind(this)}
+                      />
+                      <Divider />
+                    </div>
+                )
+              }
           )}
         </div>
     );
@@ -85,8 +88,6 @@ export default class Header extends React.Component {
     //const isInRole = Roles.userIsInRole( this.userId, 'admin' );
     //console.log(userRole);
     //console.log(isInRole);
-
-
 
     return (
         <div>
@@ -128,7 +129,9 @@ export default class Header extends React.Component {
 
 
 const IconButtonMenu = () => (
+
     <div>
+
       <NotificationBadge />
 
       <IconMenu
@@ -182,12 +185,3 @@ const NotificationBadge = () => (
   </span>
 );
 
-/*const LeftNavMenuItem = (menuItem, func) => (
- <MenuItem
- //key={index}
- containerElement={<a href={menuItem.url} />}
- primaryText={menuItem.text}
- leftIcon={menuItem.icon}
- onTouchTap={func}
- />
- );*/
