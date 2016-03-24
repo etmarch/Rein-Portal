@@ -19,44 +19,82 @@ import ActionCardMembership from 'material-ui/lib/svg-icons/action/card-membersh
 import ActionExitToApp from 'material-ui/lib/svg-icons/action/exit-to-app';
 import MapsTerrain from 'material-ui/lib/svg-icons/maps/terrain';
 
+// Array of menu elements for leftNav
+const leftNavMenuItems = [
+  { url : '/dashboard', text : 'Dashboard', icon : <SocialPublic /> },
+  { url : '/admin/invite', text : 'Invite New Client', icon : <ActionAssessment /> },
+  { url : '/logout', text : 'Sign Out', icon : <ActionExitToApp /> }
+];
+
+const rightNavMenuItems = [
+  { url : '/dashboard', text : 'Dashboard', icon : <SocialPublic /> },
+  { url : '/admin/invite', text : 'Invite New Client', icon : <ActionAssessment /> },
+  { url : '/logout', text : 'Sign Out', icon : <ActionExitToApp /> }
+];
+
 export default class Header extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {open: false, name: null};
-    }
+  constructor( props ) {
+    super( props );
+    this.state = { open : false, name : null };
+  }
 
-    handleToggle() {
-        this.setState({open: !this.state.open});
-    }
+  handleToggle() {
+    this.setState( { open : !this.state.open } );
+  }
 
-    handleClose() {
-        this.setState({open: false});
-    }
+  handleClose() {
+    this.setState( { open : false } );
+  }
 
 
-    titleClick() {
-        FlowRouter.go('/');
-    }
+  titleClick() {
+    FlowRouter.go( '/' );
+  }
 
-    componentDidMount() {
-        const userName = Meteor.userId() ? Meteor.user().username : 'Not Logged In';
-        this.setState({name: userName});
-    }
+  menuItemRender( menuItems, isLeftNav ) {
+    return (
+        <div>
+          {menuItems.map( ( menuItem, index ) => (
+                  <div key={index}>
+                    <MenuItem
+                        containerElement={<a href={menuItem.url} />}
+                        primaryText={menuItem.text}
+                        leftIcon={menuItem.icon}
+                        onTouchTap={this.handleClose.bind(this)}
+                    />
+                    <Divider />
+                  </div>
+              )
+          )}
+        </div>
+    );
+  };
 
-    render() {
+  componentDidMount() {
+    const userName = Meteor.userId() ? Meteor.user().username : 'Not Logged In';
+    if ( !!Meteor.userId() )
+      this.setState( { name : userName } );
 
-        // Roles Debugging
-        //const userRole = Roles.getRolesForUser( Meteor.userId() );
-        //const isInRole = Roles.userIsInRole( this.userId, 'admin' );
-        //console.log(userRole);
-        //console.log(isInRole);
 
-        return (
-          <div>
-              <header>
-                  <AppBar
-                    title={
+  }
+
+  render() {
+
+    // Roles Debugging
+    //const userRole = Roles.getRolesForUser( Meteor.userId() );
+    //const isInRole = Roles.userIsInRole( this.userId, 'admin' );
+    //console.log(userRole);
+    //console.log(isInRole);
+
+
+
+    return (
+        <div>
+          <header>
+            <AppBar
+                title={
                     <div>
+                    <a href="/">
                         <MapsTerrain
                             style={{
                                 'height': 44,
@@ -65,122 +103,91 @@ export default class Header extends React.Component {
                                 'marginRight': 20
                             }}
                             color='rgb(29, 54, 193)' />
-                        <h3 className="app-title display-1 mdl-color-text--white-600">Rein Portal</h3>
+                            </a>
+                        <h3 className="app-title display-1 mdl-color-text--white-600">Rein Group</h3>
                        </div> }
-                    onTitleTouchTap={this.titleClick}
-                    iconElementRight={<IconButtonMenu />}
-                    onLeftIconButtonTouchTap={this.handleToggle.bind(this)}>
-                  </AppBar>
-              </header>
+                onTitleTouchTap={this.titleClick}
+                iconElementRight={<IconButtonMenu />}
+                onLeftIconButtonTouchTap={this.handleToggle.bind(this)}>
+            </AppBar>
+          </header>
 
-              <LeftNav
-                docked={false}
-                width={200}
-                open={this.state.open}
-                onRequestChange={open => this.setState({open})}
-              >
-                  <h4 style={{'textAlign': 'center'}}>{this.state.name}</h4>
-                  <MenuItem
-                    containerElement={<a href="/dashboard" />}
-                    primaryText="Dashboard"
-                    leftIcon={<SocialPublic />}
-                    onTouchTap={this.handleClose.bind(this)}/>
-                  <Divider />
-
-                  <MenuItem
-                    linkButton
-                    containerElement={<a href="/" />}
-                    primaryText="Reports"
-                    leftIcon={<ActionAssessment />}
-                    onTouchTap={this.handleClose.bind(this)}/>
-                  <Divider />
-
-                <MenuItem
-                    linkButton
-                    containerElement={<a href="/admin/invite" />}
-                    primaryText="Add New Client"
-                    leftIcon={<ActionAssessment />}
-                    onTouchTap={this.handleClose.bind(this)}/>
-                <Divider />
-
-                  <MenuItem
-                    containerElement={<a href="/" />}
-                    primaryText="Billing"
-                    leftIcon={<ActionCardMembership />}
-                    onTouchTap={this.handleClose.bind(this)}/>
-                  <Divider />
-
-                  <MenuItem
-                    containerElement={<a href="/" />}
-                    primaryText="Settings"
-                    leftIcon={<ActionSettings />}
-                    onTouchTap={this.handleClose.bind(this)}/>
-                  <Divider />
-
-                  <MenuItem
-                    containerElement={<a href="/logout" />}
-                    primaryText="Sign out"
-                    leftIcon={<ActionExitToApp />}
-                    onTouchTap={this.handleClose.bind(this)}/>
-              </LeftNav>
-          </div>
-        )
-    }
+          <LeftNav
+              docked={false}
+              width={200}
+              open={this.state.open}
+              onRequestChange={open => this.setState({open})}
+          >
+            <h4 style={{'textAlign': 'center'}}>{this.state.name}</h4>
+            {this.menuItemRender( leftNavMenuItems )}
+          </LeftNav>
+        </div>
+    )
+  }
 }
 
+
 const IconButtonMenu = () => (
-  <div>
+    <div>
       <NotificationBadge />
 
       <IconMenu
-        iconButtonElement={
+          iconButtonElement={
             <IconButton
                 style={{ 'padding': '12px 30px', 'width': 'initial' }}
-                iconStyle={{ 'width': '30px', 'height': 30 }}>
+                iconStyle={{ 'width': '30px', 'height': 30, 'marginBottom' : 22 }}>
             <MoreVertIcon />
             </IconButton>
             }
-        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-        targetOrigin={{horizontal: 'right', vertical: 'top'}}
+          anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+          targetOrigin={{horizontal: 'right', vertical: 'top'}}
       >
-          <MenuItem
+        <MenuItem
             containerElement={<a href="/dashboard" />}
             primaryText="Dashboard"
             leftIcon={<SocialPublic />}/>
 
-          <MenuItem
+        <MenuItem
             containerElement={<a href="/" />}
             primaryText="Reports"
             leftIcon={<ActionAssessment />}/>
 
-          <MenuItem
+        <MenuItem
             containerElement={<a href="/" />}
             primaryText="Billing"
             leftIcon={<ActionCardMembership />}/>
 
-          <MenuItem
+        <MenuItem
             containerElement={<a href="/" />}
             primaryText="Settings"
             leftIcon={<ActionSettings />}/>
 
-          <MenuItem
+        <MenuItem
             containerElement={<a href="/logout" />}
             primaryText="Sign out"
             leftIcon={<ActionExitToApp />}/>
       </IconMenu>
-  </div>
+    </div>
 );
 
 
 const NotificationBadge = () => (
-  <span>
+    <span>
       <Badge
-        badgeContent={4}
-        primary={true}
+          badgeContent={4}
+          primary={true}
       >
-          <NotificationsIcon />
+        <NotificationsIcon />
       </Badge>
   </span>
 );
 
-
+/*const LeftNavMenuItem = (menuItem, func) => (
+ <MenuItem
+ //key={index}
+ containerElement={<a href={menuItem.url} />}
+ primaryText={menuItem.text}
+ leftIcon={menuItem.icon}
+ onTouchTap={func}
+ />
+ );*/

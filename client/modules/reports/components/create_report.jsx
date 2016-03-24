@@ -10,7 +10,7 @@ class CreateReport extends React.Component {
 
           <input ref="titleRef" type="Text" placeholder="Enter your post title."/> <br/>
           <textarea ref="contentRef" placeholder="Enter your post content."/> <br/>
-          <button onClick={this.createPost.bind(this)}>Add New</button>
+          <button onClick={this.createReport.bind(this)}>Add New</button>
         </div>
     );
   }

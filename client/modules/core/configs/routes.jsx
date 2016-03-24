@@ -12,7 +12,7 @@ import Enrollment from '/client/modules/core/components/enrollment.jsx';
 import Admin from '/client/modules/core/components/admin.jsx';
 import Dashboard from '/client/modules/core/components/dashboard.jsx';
 import NotFound from '/client/modules/core/components/not_found.jsx';
-
+import CreateReport from '/client/modules/reports/components/create_report.jsx';
 
 function checkLoggedIn(ctx, redirect) {
     if (!Meteor.userId() && !Meteor.loggingIn() || !Roles.userIsInRole(Meteor.userId(), [ 'client', 'admin' ])) {
@@ -25,7 +25,7 @@ function checkIfAdmin(ctx, redirect) {
     if (!Meteor.userId() && !Meteor.loggingIn()) {
         redirect('/login');
     } else { // redirect client from admin routes
-        if (!Roles.userIsInRole(Meteor.userId(), 'admin')) {
+        if (!Roles.userIsInRole(Meteor.userId(), 'admin', Roles.GLOBAL_GROUP)) {
             alert("Admin Access Only!");
             redirect('/');
         }
@@ -143,6 +143,15 @@ export default function (injectDeps) {
         action() {
             mount(MainLayoutCtx, {
                 content: () => (<Invite />)
+            });
+        }
+    });
+
+    adminRoutes.route('/new-report', {
+        name: 'newreport',
+        action() {
+            mount(MainLayoutCtx, {
+                content: () => (<CreateReport />)
             });
         }
     });

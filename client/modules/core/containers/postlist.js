@@ -10,7 +10,7 @@ export const composer = ({context}, onData) => {
   }
 };
 
-//const MyLoading = () => (<div>Hmm…</div>)
+//const Loading = () => (<div>Hmm…</div>);
 
 export default composeAll(
   composeWithTracker(composer, Loading),

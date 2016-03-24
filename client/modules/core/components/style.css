@@ -79,6 +79,9 @@ header {
   margin: 16px;
 }
 
+.box {
+  min-height: calc(100vh - 275px);
+}
 
 
 .demo-card-wide.mdl-card {

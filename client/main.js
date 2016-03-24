@@ -4,6 +4,8 @@ import initContext from './configs/context';
 // modules
 import coreModule from './modules/core';
 import commentsModule from './modules/comments';
+import reportsModule from './modules/reports';
+
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -18,6 +20,7 @@ console.dir((context));
 const app = createApp(context);
 app.loadModule(coreModule);
 app.loadModule(commentsModule);
+app.loadModule(reportsModule);
 app.init();
 
 
