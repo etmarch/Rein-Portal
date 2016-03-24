@@ -49,7 +49,7 @@ export default React.createClass({
 
     return (
 
-        <Formsy.Form className="login-form"
+        <Formsy.Form className="login-form centered"
                      onValidSubmit={this.validSubmit}
                      onInvalidSubmit={this.invalidSubmit}
                      onValid={this.enableButton}
@@ -79,7 +79,7 @@ export default React.createClass({
 
           <br />
 
-          <input className="login-submit"
+          <input className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
                  formNoValidate={true}
                  disabled={!this.state.canSubmit}
                  type="submit" defaultValue="Login" />

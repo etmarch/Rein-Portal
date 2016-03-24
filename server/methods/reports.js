@@ -14,7 +14,7 @@ Meteor.methods({
         // XXX: Do some user authorization
         const createdAt = new Date();
         const post = {_id, title, content, createdAt};
-        Colls.Posts.insert(post);
+        Reports.insert(post);
     }
 });
 

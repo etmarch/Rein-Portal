@@ -10,7 +10,7 @@ export default {
         Meteor.loginWithPassword(email, password, (err) => {
             if (err && err.reason) {
                 return LocalState.set('LOGIN_ERROR', err.reason);
-            }
+            }                               
             FlowRouter.go('/');
         });
 
@@ -57,7 +57,7 @@ export default {
                 return LocalState.set('INVITE_ERROR', err.reason);
         });
 
-        FlowRouter.go('/admin/dashboard');
+        FlowRouter.go('/dashboard');
     },
 
     inviteErrorClear({LocalState}) {
