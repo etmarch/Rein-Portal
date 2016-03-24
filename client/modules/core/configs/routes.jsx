@@ -12,7 +12,7 @@ import Enrollment from '/client/modules/core/components/enrollment.jsx';
 import Admin from '/client/modules/core/components/admin.jsx';
 import Dashboard from '/client/modules/core/components/dashboard.jsx';
 import NotFound from '/client/modules/core/components/not_found.jsx';
-import CreateReport from '/client/modules/reports/components/create_report.jsx';
+import CreateReport from '/client/modules/reports/components/new_report.jsx';
 
 function checkLoggedIn(ctx, redirect) {
     if (!Meteor.userId() && !Meteor.loggingIn() || !Roles.userIsInRole(Meteor.userId(), [ 'client', 'admin' ])) {
@@ -122,6 +122,24 @@ export default function (injectDeps) {
         }
     });
 
+    protectedRoutes.route('/my-reports', {
+        name: 'myreports',
+        action() {
+            mount(MainLayoutCtx, {
+                content: () => (<NewPost/>)
+            });
+        }
+    });
+
+    protectedRoutes.route('/report/:reportId', {
+        name: 'singlereport',
+        action({reportId}) {
+            mount(MainLayoutCtx, {
+                content: () => (<ReportSingle reportId={reportId} />)
+            });
+        }
+    });
+
     // Routes for all protected content
     const adminRoutes = FlowRouter.group({
         name         : 'admin',
@@ -152,6 +170,15 @@ export default function (injectDeps) {
         action() {
             mount(MainLayoutCtx, {
                 content: () => (<CreateReport />)
+            });
+        }
+    });
+
+    adminRoutes.route('/all-reports', {
+        name: 'allreports',
+        action() {
+            mount(MainLayoutCtx, {
+                content: () => (<Dashboard />)
             });
         }
     });

@@ -3,14 +3,19 @@ export default {
         LocalState.set('CREATE_REPORT_ERROR', null);
 
         // sample of validation pattern, can probably remove this
-        if (!text) {
-            LocalState.set('CREATE_REPORT_ERROR', 'Comment text is required.');
+        if (!reportData.title) {
+            LocalState.set('CREATE_REPORT_ERROR', 'Report Title is required.');
             return;
         }
 
         const id = Meteor.uuid();
 
-        Meteor.call('reports.create', id, postId, text, (err) => {
+        if (!Roles.userIsInRole(id, 'admin', Roles.GLOBAL_GROUP)) {
+            alert('You are not the admin!');
+            return;
+        }
+
+        Meteor.call('reports.create', reportData, (err) => {
             if (err) {
                 alert(`Post creating failed: ${err.message}`);
             }
