@@ -36,6 +36,7 @@ ejson@1.0.9-rc.11
 email@1.0.10-rc.11
 es5-shim@4.5.8-rc.11
 fastclick@1.0.9-rc.11
+force-ssl@1.0.9-rc.11
 geojson-utils@1.0.6-rc.11
 hot-code-push@1.0.2-rc.11
 html-tools@1.0.7-rc.11

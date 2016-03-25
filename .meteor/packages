@@ -30,3 +30,4 @@ standard-minifier-css
 standard-minifier-js
 ecmascript
 practicalmeteor:faker
+force-ssl
