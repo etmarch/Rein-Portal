@@ -24,10 +24,10 @@ accounts-password
 alanning:roles
 aldeed:simple-schema
 aldeed:collection2
-email
 meteorhacks:kadira
 standard-minifier-css
 standard-minifier-js
 ecmascript
 practicalmeteor:faker
 force-ssl
+email

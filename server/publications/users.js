@@ -4,6 +4,9 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
 Meteor.publish('users.collection', function () {
+    // debugging
+    
+
     const selector = {};
     const options = {
         // fields: {_id: 1, title: 1},

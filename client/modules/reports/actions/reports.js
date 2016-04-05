@@ -24,5 +24,7 @@ export default {
 
     clearErrors({LocalState}) {
         return LocalState.set('CREATE_REPORT_ERROR', null);
-    }
+    },
+
+    
 };
