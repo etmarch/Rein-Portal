@@ -13,6 +13,8 @@ import Admin from '/client/modules/core/components/admin.jsx';
 import Dashboard from '/client/modules/core/components/dashboard.jsx';
 import NotFound from '/client/modules/core/components/not_found.jsx';
 import CreateReport from '/client/modules/reports/components/new_report.jsx';
+import NotificationsList from '/client/modules/notifications/containers/notifications_list';
+
 
 function checkLoggedIn(ctx, redirect) {
     if (!Meteor.userId() && !Meteor.loggingIn() || !Roles.userIsInRole(Meteor.userId(), [ 'client', 'admin' ])) {
@@ -136,6 +138,15 @@ export default function (injectDeps) {
         action({reportId}) {
             mount(MainLayoutCtx, {
                 content: () => (<ReportSingle reportId={reportId} />)
+            });
+        }
+    });
+
+    protectedRoutes.route('/my-notifications', {
+        name: 'mynotifications',
+        action() {
+            mount(MainLayoutCtx, {
+                content: () => (<NotificationsList/>)
             });
         }
     });

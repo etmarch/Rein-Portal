@@ -27,6 +27,27 @@ export default function () {
           );
 
           Roles.addUsersToRoles( id, user.roles, Roles.GLOBAL_GROUP );
+
+          for ( let i = 0; i < 3; i++ ) {
+            const notifyData = {
+              title : 'Report ' + i + ' for ' + faker.date.recent(),
+              link : '/my-notifications',
+              ownerId: id,
+              class: 'centered',
+              createdAt: new Date(),
+              isRead: false
+            };
+
+            Colls.Notifications.insert( notifyData, ( err, res ) => {
+              if ( err ) {
+                console.log( "error doing initial report inserts", err.reason );
+              } else {
+                console.log( "Created! " + res );
+              }
+
+            } );
+          }
+
         }
     );
   }

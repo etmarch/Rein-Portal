@@ -176,12 +176,14 @@ const IconButtonMenu = () => (
 
 const NotificationBadge = () => (
     <span>
+      <a href="/my-notifications">
       <Badge
           badgeContent={4}
           primary={true}
       >
         <NotificationsIcon />
       </Badge>
+      </a>
   </span>
 );
 
