@@ -1,5 +1,6 @@
 import React from 'react';
 import Navigation from './navigation.jsx';
+import NotificationBadge from './../../notifications/containers/notification_badge';
 import AppBar from 'material-ui/lib/app-bar';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import LeftNav from 'material-ui/lib/left-nav';
@@ -174,7 +175,7 @@ const IconButtonMenu = () => (
 );
 
 
-const NotificationBadge = () => (
+/*const NotificationBadge = () => (
     <span>
       <a href="/my-notifications">
       <Badge
@@ -185,5 +186,5 @@ const NotificationBadge = () => (
       </Badge>
       </a>
   </span>
-);
+);*/
 

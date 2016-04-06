@@ -9,8 +9,8 @@ class Invite extends React.Component {
 
     render() {
         return (
-          <Card>
-              <h2>Future Invite Register Page</h2>
+          <Card className="centered">
+              <h2>Invite Client</h2>
             <br />
             <Container />
           </Card>

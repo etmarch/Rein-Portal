@@ -7,7 +7,7 @@ export default function () {
     'notifications.read'(_id) {
       check(_id, String);
 
-      Colls.Notifications.update({_id: _id}, {isRead: true});
+      Colls.Notifications.update({_id: _id}, {$set: {isRead: true}});
     }
   });
 }

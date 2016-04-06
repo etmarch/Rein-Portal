@@ -105,3 +105,11 @@ footer {
 }
 
 
+.notify-read {
+  background: grey;
+}
+
+.notify-unread {
+  background: lightpink;
+}
+

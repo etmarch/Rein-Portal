@@ -5,9 +5,10 @@ import {check} from 'meteor/check';
 Meteor.methods({
   'notifications.read'( _id ) { // notification id
     console.log('Read '+_id+' Notification!');
+    check(_id, String);
 
     // Create Invitation doc
-    Colls.Notifications.update({_id: _id}, {isRead: true}, function(error) {
+    Colls.Notifications.update({_id: _id, isRead: false}, {$set: {isRead: true}}, function(error) {
       if (error)
         throw new Meteor.Error('invite-error', 'Invitation was not created properly '+error);
 

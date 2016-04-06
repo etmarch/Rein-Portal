@@ -33,7 +33,7 @@ export default function () {
               title : 'Report ' + i + ' for ' + faker.date.recent(),
               link : '/my-notifications',
               ownerId: id,
-              class: 'centered',
+              className: 'centered',
               createdAt: new Date(),
               isRead: false
             };
