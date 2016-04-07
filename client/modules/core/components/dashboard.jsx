@@ -5,9 +5,10 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-          <Card>
+          <div>
               <h2>Dashboard for Users</h2>
-          </Card>
+            <p>DASH STUFF HERE</p>
+          </div>
         )
     }
 }

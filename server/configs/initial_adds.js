@@ -46,6 +46,44 @@ export default function () {
               }
 
             } );
+
+
+            let reportData = {
+              title                : 'Report ' + i + ' for ' + faker.date.recent(),
+              clientId             : id,
+              createdAt            : new Date(),
+              isSeen               : false,
+              nySessionsCount      : getRandomInt( 50, 250 ),
+              londonSessionsCount  : getRandomInt( 25, 500 ),
+              totalSessions        : getRandomInt( 50, 350 ),
+              transactions         : getRandomInt( 50, 350 ),
+              socialFollowersCount : {
+                facebook   : getRandomInt( 50, 350 ),
+                twitter    : getRandomInt( 50, 350 ),
+                googlePlus : getRandomInt( 50, 350 )
+              },
+              onSiteSEO            : {
+                workCompleted  : faker.lorem.paragraph(),
+                workToComplete : faker.lorem.paragraph(),
+                needFromClient : faker.lorem.paragraph()
+              },
+              offSiteSEO           : {
+                workCompleted  : faker.lorem.paragraph(),
+                workToComplete : faker.lorem.paragraph(),
+                needFromClient : faker.lorem.paragraph()
+              }
+            };
+
+
+            Colls.Reports.insert( reportData, ( err, res ) => {
+              if ( err ) {
+                console.log( "error doing initial report inserts", err.reason );
+              } else {
+                console.log( "Created! " + res );
+              }
+
+            } );
+
           }
 
         }
@@ -101,6 +139,26 @@ export default function () {
             }
 
           } );
+
+          const notifyData = {
+            title : 'Report ' + k + ' for ' + faker.date.recent(),
+            link : '/my-notifications',
+            ownerId: id,
+            className: 'centered',
+            createdAt: new Date(),
+            isRead: false
+          };
+
+          Colls.Notifications.insert( notifyData, ( err, res ) => {
+            if ( err ) {
+              console.log( "error doing initial report inserts", err.reason );
+            } else {
+              console.log( "Created! " + res );
+            }
+
+          } );
+
+
         }
       }
     }

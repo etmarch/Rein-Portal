@@ -1,4 +1,3 @@
-/*
 import SingleReport from '../components/single_report.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
@@ -28,4 +27,5 @@ export default composeAll(
     composeWithTracker(composer),
     useDeps()
 )(SingleReport);
-*/
+
+

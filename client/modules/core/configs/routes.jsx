@@ -14,6 +14,8 @@ import Dashboard from '/client/modules/core/components/dashboard.jsx';
 import NotFound from '/client/modules/core/components/not_found.jsx';
 import CreateReport from '/client/modules/reports/components/new_report.jsx';
 import NotificationsList from '/client/modules/notifications/containers/notifications_list';
+import ReportsList from '/client/modules/reports/containers/reports_list';
+import SingleReport from '/client/modules/reports/containers/single_report';
 
 
 function checkLoggedIn(ctx, redirect) {
@@ -185,11 +187,20 @@ export default function (injectDeps) {
         }
     });
 
-    adminRoutes.route('/all-reports', {
-        name: 'allreports',
+    adminRoutes.route('/reports/:reportId', {
+        name: 'singleReport',
+        action({reportId}) {
+            mount(MainLayoutCtx, {
+                content: () => (<SingleReport reportId={reportId} />)
+            });
+        }
+    });
+
+    adminRoutes.route('/reports', {
+        name: 'reportsList',
         action() {
             mount(MainLayoutCtx, {
-                content: () => (<Dashboard />)
+                content: () => (<ReportsList />)
             });
         }
     });

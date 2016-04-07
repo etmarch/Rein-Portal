@@ -4,7 +4,8 @@ import {check} from 'meteor/check';
 
 
 Meteor.publish('reports.list', function () {
-  Meteor._sleepForMs(1000);
+  //console.dir(Colls);
+  //Meteor._sleepForMs(1000);
   const selector = {};
   const options = {
     fields: {_id: 1, title: 1},
@@ -12,7 +13,9 @@ Meteor.publish('reports.list', function () {
     limit: 10
   };
 
-  return Colls.Reports.find(selector, options);
+  console.log(Colls.Reports.find().count());
+
+  return Colls.Reports.find(/*selector, options*/);
 });
 
 Meteor.publish('reports.single', function (postId) {

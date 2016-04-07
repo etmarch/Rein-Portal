@@ -24,7 +24,8 @@ import MapsTerrain from 'material-ui/lib/svg-icons/maps/terrain';
 const leftNavMenuItems = [
   { url : '/dashboard', text : 'Dashboard', icon : <SocialPublic /> },
   { url : '/admin/invite', text : 'Invite New Client', icon : <ActionAssessment /> },
-  { url : '/logout', text : 'Sign Out', icon : <ActionExitToApp /> }
+  { url : '/logout', text : 'Sign Out', icon : <ActionExitToApp /> },
+  { url : '/admin/reports', text : 'All Reports', icon : <ActionHome /> }
 ];
 
 // Array of menu items for right drop down nav - currently not being used
@@ -173,18 +174,3 @@ const IconButtonMenu = () => (
       </IconMenu>
     </div>
 );
-
-
-/*const NotificationBadge = () => (
-    <span>
-      <a href="/my-notifications">
-      <Badge
-          badgeContent={4}
-          primary={true}
-      >
-        <NotificationsIcon />
-      </Badge>
-      </a>
-  </span>
-);*/
-

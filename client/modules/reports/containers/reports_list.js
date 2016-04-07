@@ -1,12 +1,20 @@
-/*import ReportsList from '../components/reports_list.jsx';
+import ReportsList from '../components/reports_list.jsx';
 import Loading from '../../core/components/loading.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context}, onData) => {
   const {Meteor, Collections} = context();
-  if (Meteor.subscribe('reports.list').ready()) {
-    const reports = Collections.Reports.find().fetch();
-    onData(null, {reports});
+  const subscription = Meteor.subscribe('reports.list');
+
+  if (subscription.ready()) {
+    const data = {
+      ready: true,
+      reports: Collections.Reports.find().fetch()
+    };
+    //console.dir(data);
+    onData(null, data);
+  } else {
+    onData();
   }
 };
 
@@ -15,4 +23,4 @@ export const composer = ({context}, onData) => {
 export default composeAll(
     composeWithTracker(composer, Loading),
     useDeps()
-)(ReportsList);*/
+)(ReportsList);
