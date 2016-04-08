@@ -14,7 +14,7 @@ const spinCfg = {
 };
 
 const Loading = () => (
-  <div style={{'textAlign': 'center', 'minHeight': 400, 'backgroundColor': '#CFD8DC'}}>
+  <div style={{'textAlign': 'center', 'minHeight': 400}}>
       <Spinner config={spinCfg} />
   </div>
 );

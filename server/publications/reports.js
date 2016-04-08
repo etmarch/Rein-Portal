@@ -5,7 +5,7 @@ import {check} from 'meteor/check';
 
 Meteor.publish('reports.list', function () {
   //console.dir(Colls);
-  //Meteor._sleepForMs(1000);
+  Meteor._sleepForMs(1000);
   const selector = {};
   const options = {
     fields: {_id: 1, title: 1},
