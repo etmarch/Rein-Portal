@@ -22,33 +22,33 @@ import MapsTerrain from 'material-ui/lib/svg-icons/maps/terrain';
 
 // Array of menu elements for leftNav
 const leftNavMenuItems = [
-  { url : '/dashboard', text : 'Dashboard', icon : <SocialPublic /> },
-  { url : '/admin/invite', text : 'Invite New Client', icon : <ActionAssessment /> },
-  { url : '/logout', text : 'Sign Out', icon : <ActionExitToApp /> },
-  { url : '/admin/reports', text : 'All Reports', icon : <ActionHome /> }
+  { url: '/dashboard', text: 'Dashboard', icon: <SocialPublic /> },
+  { url: '/admin/invite', text: 'Invite New Client', icon: <ActionAssessment /> },
+  { url: '/logout', text: 'Sign Out', icon: <ActionExitToApp /> },
+  { url: '/admin/reports', text: 'All Reports', icon: <ActionHome /> },
+  { url: '/admin/clients', text: 'All Clients', icon: <NotificationsIcon /> }
 ];
 
 // Array of menu items for right drop down nav - currently not being used
 const rightNavMenuItems = [
-  { url : '/dashboard', text : 'Dashboard', icon : <SocialPublic /> },
-  { url : '/admin/invite', text : 'Invite New Client', icon : <ActionAssessment /> },
-  { url : '/logout', text : 'Sign Out', icon : <ActionExitToApp /> }
+  { url: '/dashboard', text: 'Dashboard', icon: <SocialPublic /> },
+  { url: '/admin/invite', text: 'Invite New Client', icon: <ActionAssessment /> },
+  { url: '/logout', text: 'Sign Out', icon: <ActionExitToApp /> }
 ];
 
 export default class Header extends React.Component {
   constructor( props ) {
     super( props );
-    this.state = { open : false, name : null };
+    this.state = { open: false, name: null };
   }
 
   handleToggle() {
-    this.setState( { open : !this.state.open } );
+    this.setState( { open: !this.state.open } );
   }
 
   handleClose() {
-    this.setState( { open : false } );
+    this.setState( { open: false } );
   }
-
 
   titleClick() {
     FlowRouter.go( '/' );
@@ -78,7 +78,7 @@ export default class Header extends React.Component {
   componentDidMount() {
     const userName = Meteor.userId() ? Meteor.user().username : 'Not Logged In';
     if ( !!Meteor.userId() )
-      this.setState( { name : userName } );
+      this.setState( { name: userName } );
 
 
   }
@@ -90,6 +90,7 @@ export default class Header extends React.Component {
     //const isInRole = Roles.userIsInRole( this.userId, 'admin' );
     //console.log(userRole);
     //console.log(isInRole);
+    console.dir( "header state : " + this.state.name );
 
     return (
         <div>
@@ -105,10 +106,11 @@ export default class Header extends React.Component {
                                 'marginTop' : -5,
                                 'marginRight': 20
                             }}
-                            color='rgb(29, 54, 193)' />
-                            </a>
-                        <h3 className="app-title display-1 mdl-color-text--white-600">Rein Group</h3>
-                       </div> }
+                            color='rgb(29, 54, 193)'
+                        />
+                    </a>
+                    <h3 className="app-title display-1 mdl-color-text--white-600">Rein Group</h3>
+                </div> }
                 onTitleTouchTap={this.titleClick}
                 iconElementRight={<IconButtonMenu />}
                 onLeftIconButtonTouchTap={this.handleToggle.bind(this)}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Formsy from 'formsy-react';
 const FMUI = require('formsy-material-ui');
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from '../../../../node_modules/material-ui/lib/raised-button';
 const { FormsyText } = FMUI;
 
 export default React.createClass({

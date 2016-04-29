@@ -6,8 +6,10 @@ import MainLayout from '/client/modules/core/components/main_layout.jsx';
 import PostList from '/client/modules/core/containers/postlist';
 import Post from '/client/modules/core/containers/post';
 import NewPost from '/client/modules/core/containers/newpost';
-import Login from '/client/modules/core/components/login.jsx';
-import Invite from '/client/modules/core/components/invite.jsx';
+import Login from '/client/modules/users/components/login.jsx';
+import Invite from '/client/modules/users/components/invite.jsx';
+import AdminClientList from '/client/modules/users/components/admin_client_list.jsx';
+import AdminSingleClient from '/client/modules/users/components/admin_single_client.jsx';
 import Enrollment from '/client/modules/core/components/enrollment.jsx';
 import Admin from '/client/modules/core/components/admin.jsx';
 import Dashboard from '/client/modules/core/components/dashboard.jsx';
@@ -187,15 +189,6 @@ export default function (injectDeps) {
         }
     });
 
-    adminRoutes.route('/reports/:reportId', {
-        name: 'singleReport',
-        action({reportId}) {
-            mount(MainLayoutCtx, {
-                content: () => (<SingleReport reportId={reportId} />)
-            });
-        }
-    });
-
     adminRoutes.route('/reports', {
         name: 'reportsList',
         action() {
@@ -205,6 +198,33 @@ export default function (injectDeps) {
         }
     });
 
+    adminRoutes.route('/reports/:reportId', {
+        name: 'singleReport',
+        action({reportId}) {
+            mount(MainLayoutCtx, {
+                content: () => (<SingleReport reportId={reportId} />)
+            });
+        }
+    });
+
+    adminRoutes.route('/clients', {
+        name: 'adminClientsList',
+        action() {
+            mount(MainLayoutCtx, {
+                content: () => (<AdminClientList />)
+            });
+        }
+    });
+
+    adminRoutes.route('/clients/:clientId', {
+        name: 'adminSingleClient',
+        action({clientId}) {
+            mount(MainLayoutCtx, {
+                content: () => (<AdminSingleClient clientId={clientId} />)
+            });
+        }
+    });
+    
     FlowRouter.notFound = {
         action: function () {
             mount(MainLayoutCtx, {

@@ -1,23 +1,16 @@
-// import {Colors} from '/imports/configs/collections';
-import Colls from '/lib/collections/index';
+// import Colls from '/lib/collections/index';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
-Meteor.publish('users.collection', function () {
+Meteor.publish('users.list', function () {
     // debugging
-    
-
     const selector = {};
-    const options = {
-        // fields: {_id: 1, title: 1},
-        sort: {createdAt: -1},
-        limit: 10
-    };
+    const options = {};
     const response = Meteor.users.find(selector, options);
     return response;
 });
 
-Meteor.publish('users.single', function (_id) {
+Meteor.publish('clients.single', function (_id) {
     check(_id, String);
     const selector = {_id};
     const response = Meteor.users.find(selector);

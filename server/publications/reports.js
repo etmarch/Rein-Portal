@@ -13,7 +13,7 @@ Meteor.publish('reports.list', function () {
     limit: 10
   };
 
-  console.log(Colls.Reports.find().count());
+  //console.log(Colls.Reports.find().count());
 
   return Colls.Reports.find(/*selector, options*/);
 });

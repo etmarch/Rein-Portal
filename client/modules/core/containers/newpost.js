@@ -1,4 +1,4 @@
-import NewPost from '../components/invite.jsx';
+import NewPost from '../../users/components/invite.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, clearErrors}, onData) => {

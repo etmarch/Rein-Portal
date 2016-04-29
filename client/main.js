@@ -3,6 +3,7 @@ import initContext from './configs/context';
 
 // modules
 import coreModule from './modules/core';
+import usersModule from './modules/users';
 import commentsModule from './modules/comments';
 import reportsModule from './modules/reports';
 import notificationsModule from './modules/notifications';
@@ -24,6 +25,7 @@ app.loadModule(coreModule);
 app.loadModule(commentsModule);
 app.loadModule(reportsModule);
 app.loadModule(notificationsModule);
+app.loadModule(usersModule);
 app.init();
 
 

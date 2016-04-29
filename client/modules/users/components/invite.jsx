@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from 'material-ui/lib/card/card';
+import Card from '../../../../node_modules/material-ui/lib/card/card';
 import dataComposer from '../containers/invite.js';
 import Component from './invite_form.jsx';
 
