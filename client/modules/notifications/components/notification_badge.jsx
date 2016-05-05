@@ -7,7 +7,7 @@ class NotificationBadge extends React.Component {
     const { notifications } = this.props;
     return (
         <span>
-      {console.log( notifications )}
+      {console.log( "notifications-badge: "+notifications )}
           {console.log( this.props )}
       <a href="/my-notifications">
       <Badge

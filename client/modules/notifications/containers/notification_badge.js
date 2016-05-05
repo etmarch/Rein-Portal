@@ -5,7 +5,8 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 export const composer = ( { context }, onData ) => {
   const { Meteor, Collections } = context();
   if ( Meteor.subscribe( 'notifications.dropList' ).ready() ) {
-    const notifications = Collections.Notifications.find().fetch();
+    let selector = { isRead: false };
+    const notifications = Collections.Notifications.find(selector).fetch();
     onData( null, { notifications } );
   }
 };
