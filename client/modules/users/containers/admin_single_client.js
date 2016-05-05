@@ -5,7 +5,7 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 export const composer = ({context, clientId}, onData) => {
   const {Meteor, Collections, Tracker} = context();
   
-  Meteor.subscribe('reports.single', clientId, () => {
+  Meteor.subscribe('clients.single', clientId, () => {
     const clientData = Meteor.users.findOne(clientId);
     onData(null, {clientData});
   });

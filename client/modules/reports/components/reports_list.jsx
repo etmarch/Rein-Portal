@@ -10,7 +10,7 @@ const ReportsList = (data) => (
       <h3>List of Reports ({data.reports.length})</h3>
       <List>
         {data.reports.map( report => {
-          return (<a href={`/admin/reports/${report._id}`} key={report._id}><ListItem primaryText={report.title}  /></a>)
+          return (<a href={`/admin/reports/${report._id}`} key={report._id}><ListItem primaryText={report.title} /><Divider /></a>)
         }  )}
       </List>
     </div>

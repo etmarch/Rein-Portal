@@ -7,9 +7,13 @@ export const composer = ({context}, onData) => {
   const subscription = Meteor.subscribe('users.list');
   
   if (subscription.ready()) {
+
+    const selector = {
+      _id : { $ne: Meteor.userId() }
+    };
     const data = {
       ready: true,
-      clients: Meteor.users.find().fetch()
+      clients: Meteor.users.find(selector).fetch()
     };
     console.dir(data);
     onData(null, data);

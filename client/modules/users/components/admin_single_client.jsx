@@ -2,7 +2,7 @@ import React from 'react';
 
 const SingleClientA = (data) => (
     <div>{console.dir(data)}
-      <h3>{data.report.title}</h3>
+      <h3>{data.clientData.username}</h3>
     </div>
 );
 
