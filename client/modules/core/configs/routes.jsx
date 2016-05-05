@@ -8,8 +8,8 @@ import Post from '/client/modules/core/containers/post';
 import NewPost from '/client/modules/core/containers/newpost';
 import Login from '/client/modules/users/components/login.jsx';
 import Invite from '/client/modules/users/components/invite.jsx';
-import AdminClientList from '/client/modules/users/components/admin_client_list.jsx';
-import AdminSingleClient from '/client/modules/users/components/admin_single_client.jsx';
+import AdminClientList from '/client/modules/users/containers/admin_client_list';
+import AdminSingleClient from '/client/modules/users/containers/admin_single_client';
 import Enrollment from '/client/modules/core/components/enrollment.jsx';
 import Admin from '/client/modules/core/components/admin.jsx';
 import Dashboard from '/client/modules/core/components/dashboard.jsx';
@@ -208,7 +208,7 @@ export default function (injectDeps) {
     });
 
     adminRoutes.route('/clients', {
-        name: 'adminClientsList',
+        name: 'adminClientList',
         action() {
             mount(MainLayoutCtx, {
                 content: () => (<AdminClientList />)

@@ -5,7 +5,7 @@ import Divider from 'material-ui/lib/divider';
 
 class NotificationsList extends React.Component {
   render() {
-    console.log( 'this props: ' + JSON.stringify( this.props ) );
+    //console.log( 'this props: ' + JSON.stringify( this.props ) );
     const { notifications } = this.props;
     return (
 

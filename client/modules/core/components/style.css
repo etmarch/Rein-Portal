@@ -106,10 +106,10 @@ footer {
 
 
 .notify-read {
-  background: grey;
+  box-shadow: 0 0 2px 1px gray inset;
 }
 
 .notify-unread {
-  background: lightpink;
+  box-shadow: 0 0 2px 1px lightcoral inset;
 }
 
