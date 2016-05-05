@@ -10,7 +10,6 @@ import CardTitle from 'material-ui/lib/card/card-title';
 import ActionHome from 'material-ui/lib/svg-icons/action/home';
 import IconButton from 'material-ui/lib/icon-button';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
-import Badge from 'material-ui/lib/badge';
 import Divider from 'material-ui/lib/divider';
 import NotificationsIcon from 'material-ui/lib/svg-icons/social/notifications';
 import SocialPublic from 'material-ui/lib/svg-icons/social/public';
@@ -21,12 +20,19 @@ import ActionExitToApp from 'material-ui/lib/svg-icons/action/exit-to-app';
 import MapsTerrain from 'material-ui/lib/svg-icons/maps/terrain';
 
 // Array of menu elements for leftNav
-const leftNavMenuItems = [
+const leftNavAdminMenuItems = [
   { url: '/dashboard', text: 'Dashboard', icon: <SocialPublic /> },
   { url: '/admin/invite', text: 'Invite New Client', icon: <ActionAssessment /> },
-  { url: '/logout', text: 'Sign Out', icon: <ActionExitToApp /> },
   { url: '/admin/reports', text: 'All Reports', icon: <ActionHome /> },
+  { url: '/admin/reports', text: 'New Report', icon: <ActionHome /> },
   { url: '/admin/clients', text: 'All Clients', icon: <NotificationsIcon /> }
+];
+
+const leftNavClientMenuItems = [
+  { url: '/dashboard', text: 'Dashboard', icon: <SocialPublic /> },
+  { url: '/dashboard', text: 'My Reports', icon: <ActionAssessment /> },
+  { url: '/dashboard', text: 'My Payments', icon: <ActionAssessment /> },
+  { url: '/logout', text: 'Sign Out', icon: <ActionExitToApp /> }
 ];
 
 // Array of menu items for right drop down nav - currently not being used
@@ -87,10 +93,15 @@ export default class Header extends React.Component {
 
     // Roles Debugging
     //const userRole = Roles.getRolesForUser( Meteor.userId() );
-    //const isInRole = Roles.userIsInRole( this.userId, 'admin' );
     //console.log(userRole);
     //console.log(isInRole);
-    console.dir( "header state : " + this.state.name );
+    const isInRole = Roles.userIsInRole( Meteor.userId(), 'admin' );
+    let leftNavMenu = [];
+    if (isInRole === true) {
+      leftNavMenu = leftNavAdminMenuItems;
+    } else {
+      leftNavMenu = leftNavClientMenuItems;
+    }
 
     return (
         <div>
@@ -112,7 +123,7 @@ export default class Header extends React.Component {
                     <h3 className="app-title display-1 mdl-color-text--white-600">Rein Group</h3>
                 </div> }
                 onTitleTouchTap={this.titleClick}
-                iconElementRight={<IconButtonMenu />}
+                iconElementRight={ Meteor.userId() ? <IconButtonMenu /> : <ActionHome />}
                 onLeftIconButtonTouchTap={this.handleToggle.bind(this)}>
             </AppBar>
           </header>
@@ -124,7 +135,7 @@ export default class Header extends React.Component {
               onRequestChange={open => this.setState({open})}
           >
             <h4 style={{'textAlign': 'center'}}>{this.state.name}</h4>
-            {this.menuItemRender( leftNavMenuItems )}
+            {this.menuItemRender( leftNavMenu )}
           </LeftNav>
         </div>
     )

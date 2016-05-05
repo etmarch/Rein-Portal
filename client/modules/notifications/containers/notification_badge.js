@@ -11,16 +11,6 @@ export const composer = ( { context }, onData ) => {
   }
 };
 
-/*function composer({context}, onData) {
-  const { Meteor, Collections } = context();
-  const handle = Meteor.subscribe('notifications.dropList');
-  if (handle.ready()) {
-    const posts = Collections.Notifications.find().fetch();
-    onData(null, {posts});
-  } else {
-    onData(null, {posts: 10});
-  }
-};*/
 
 /*export const depsMapper = ( context  ) => ({
   context : () => context

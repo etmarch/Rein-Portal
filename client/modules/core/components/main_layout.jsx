@@ -22,9 +22,9 @@ const Layout = ( { content = () => null } ) => (
           <div className="row">
             <div className="col-xs-12">
               <main className="box">
-                <Paper>
+
                   { content() }
-                </Paper>
+                
               </main>
             </div>
           </div>
