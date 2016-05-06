@@ -1,18 +1,26 @@
-import Colls from '/lib/collections/index';
+import Collections from '/lib/collections/index';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
 Meteor.methods({
-  'accounts.sendInvite'( email ) {
-    check(email, String);
+  'accounts.sendInvite'( data ) {
+    check(data.email, String);
+    check(data.firstName, String);
+    check(data.lastName, String);
+    check(data.companyName, String);
 
     // Show the latency compensations
     Meteor._sleepForMs(500);
 
     // Create the account without password
     const userId = Accounts.createUser( {
-      username: email,
-      email: email 
+      username: data.email,
+      email: data.email,
+      profile: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        companyName: data.companyName
+      }
     });
 
     if (!userId) {
@@ -25,13 +33,13 @@ Meteor.methods({
 
     const inviteData = {
       userId: userId,
-      email: email,
+      email: data.email,
       dateInvited: new Date(),
       accountCreated: false
     };
 
     // Create Invitation doc
-    Colls.Invitations.insert(inviteData, function(error) {
+    Collections.Invitations.insert(inviteData, function(error) {
       if (error)
           throw new Meteor.Error('invite-error', 'Invitation was not created properly '+error);
 

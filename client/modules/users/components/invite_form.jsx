@@ -12,7 +12,8 @@ export default React.createClass({
 
   validSubmit(data) {
     // console.log('validSubmit', data);
-    this.props.submitAction(data.email);
+    console.dir(data);
+    this.props.submitAction(data);
   },
 
   // invalidSubmit(data) {
@@ -63,6 +64,49 @@ export default React.createClass({
                 <span className="octicon octicon-megaphone" ></span>
                 {error}
               </div> : null }
+
+          <FormsyText
+              {...sharedProps}
+              name="firstName"
+              value=""
+              label="First Name"
+              placeholder="Client's First Name."
+              autoComplete="off"
+              validations="minLength:1"
+              validationError="Please provide a valid first name."
+
+          />
+
+          <br />
+
+          <FormsyText
+              {...sharedProps}
+              name="lastName"
+              value=""
+              label="Last Name"
+              placeholder="Client's Last Name."
+              autoComplete="off"
+              validations="minLength:1"
+              validationError="Please provide a valid last name."
+
+          />
+
+          <br />
+
+          <FormsyText
+              {...sharedProps}
+              name="companyName"
+              value=""
+              label="Client's Company/Business"
+              type="email"
+              placeholder="Company Name."
+              autoComplete="off"
+              validations="minLength:1"
+              validationError="Please provide a valid company name."
+
+          />
+
+          <br />
 
           <FormsyText
               {...sharedProps}

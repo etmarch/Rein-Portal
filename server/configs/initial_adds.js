@@ -91,14 +91,19 @@ export default function () {
   }
 
 
-  if ( userCount > 1 && userCount < 5 ) {
+  if ( userCount > 0 && userCount < 3 ) {
     for ( let j = 0; j < 3; j++ ) {
       // Add 'client' users and store the id
       let id = Accounts.createUser(
           {
             email    : 'client' + j + '@client.com',
             password : 'client' + j,
-            username : 'client' + j
+            username : 'client' + j,
+            profile: {
+              firstName: faker.name.firstName(),
+              lastName: faker.name.lastName(),
+              companyName: faker.company.companyName()
+            }
           }
       );
       if ( !!id ) {

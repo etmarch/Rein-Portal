@@ -44,15 +44,34 @@ export default {
   },
 
   // Admin submits invite form
-  submitInvite({Meteor, LocalState, FlowRouter}, email) {
+  submitInvite({Meteor, LocalState, FlowRouter}, data) {
     console.log('--SubmitInvite Action Call--');
-    if (!email) {
+    console.log(data);
+    if (!data.email) {
       return LocalState.set('INVITE_ERROR', 'Proper Email Address is Required!');
+    }
+
+    if (!data.firstName) {
+      return LocalState.set('INVITE_ERROR', 'Clients First Name is Required!');
+    }
+
+    if (!data.lastName) {
+      return LocalState.set('INVITE_ERROR', 'Last Name is Required!');
+    }
+    if (!data.companyName) {
+      return LocalState.set('INVITE_ERROR', 'Company Name is Required!');
     }
 
     LocalState.set('INVITE_ERROR', null);
 
-    Meteor.call('accounts.sendInvite', email, ( err ) => {
+    check(data.email, String);
+    check(data.firstName, String);
+    check(data.lastName, String);
+    check(data.companyName, String);
+
+    check([data, LocalState, FlowRouter, Meteor], [Match.Any]);
+
+    Meteor.call('accounts.sendInvite', data, ( err ) => {
       if (err)
         return LocalState.set('INVITE_ERROR', err.reason);
     });
