@@ -11,7 +11,7 @@ const AdminClientsList = (data) => (
       <List>
         {data.clients.map( client => {
           return (<a href={`/admin/clients/${client._id}`} key={client._id}>
-            <ListItem primaryText={client.username} leftAvatar={<Avatar>T</Avatar>} />
+            <ListItem primaryText={client.username} leftAvatar={<Avatar>{client.username.charAt(0).toUpperCase()}</Avatar>} />
             <Divider />
           </a>)
         }  )}
