@@ -1,6 +1,7 @@
 import Collections from '/lib/collections/index';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
+import {Accounts} from 'meteor/accounts-base';
 
 Meteor.methods({
   'accounts.sendInvite'( data ) {

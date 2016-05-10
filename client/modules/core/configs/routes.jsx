@@ -31,7 +31,7 @@ function checkIfAdmin(ctx, redirect) {
     if (!Meteor.userId() && !Meteor.loggingIn()) {
         redirect('/login');
     } else { // redirect client from admin routes
-        if (!Roles.userIsInRole(Meteor.userId(), 'admin', Roles.GLOBAL_GROUP)) {
+        if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
             alert("Admin Access Only!");
             redirect('/');
         }
@@ -40,6 +40,7 @@ function checkIfAdmin(ctx, redirect) {
 
 function redirectIfLoggedIn(ctx, redirect) {
     if (Meteor.userId()) {
+        //alert("Admin Access Only!");
         redirect('/');
     }
 }
@@ -83,7 +84,7 @@ export default function (injectDeps) {
         name: 'posts.list',
         action() {
             mount(MainLayoutCtx, {
-                content: () => (<PostList />)
+                content: () => (<Dashboard />)
             });
         }
     });
@@ -111,7 +112,7 @@ export default function (injectDeps) {
 
     protectedRoutes.route('/post/:postId', {
         name: 'posts.single',
-        // triggersEnter: [ checkLoggedIn ],
+        triggersEnter: [ checkLoggedIn ],
         action({postId}) {
             mount(MainLayoutCtx, {
                 content: () => (<Post postId={postId}/>)

@@ -1,4 +1,7 @@
-import Colls from '/lib/collections/index';
+import Collections from '/lib/collections/index';
+import { Roles } from 'meteor/alanning:roles';
+//import { _ }from 'meteor/underscore';
+import _ from 'lodash';
 
 const users = [
   { name : 'admin', email : 'admin@admin.com', roles : [ 'admin' ], pw : 'admin1' },
@@ -22,11 +25,16 @@ export default function () {
               {
                 email    : user.email,
                 password : user.pw,
-                username : user.name
+                username : user.name,
+                profile: {
+                  firstName: faker.name.firstName(),
+                  lastName: faker.name.lastName(),
+                  companyName: faker.company.companyName()
+                }
               }
           );
 
-          Roles.addUsersToRoles( id, user.roles, Roles.GLOBAL_GROUP );
+          Roles.addUsersToRoles( id, user.roles );
 
           for ( let i = 0; i < 3; i++ ) {
             const notifyData = {
@@ -38,7 +46,7 @@ export default function () {
               isRead: false
             };
 
-            Colls.Notifications.insert( notifyData, ( err, res ) => {
+            Collections.Notifications.insert( notifyData, ( err, res ) => {
               if ( err ) {
                 console.log( "error doing initial report inserts", err.reason );
               } else {
@@ -75,7 +83,7 @@ export default function () {
             };
 
 
-            Colls.Reports.insert( reportData, ( err, res ) => {
+            Collections.Reports.insert( reportData, ( err, res ) => {
               if ( err ) {
                 console.log( "error doing initial report inserts", err.reason );
               } else {
@@ -136,7 +144,7 @@ export default function () {
           };
 
 
-          Colls.Reports.insert( reportData, ( err, res ) => {
+          Collections.Reports.insert( reportData, ( err, res ) => {
             if ( err ) {
               console.log( "error doing initial report inserts", err.reason );
             } else {
@@ -154,7 +162,7 @@ export default function () {
             isRead: false
           };
 
-          Colls.Notifications.insert( notifyData, ( err, res ) => {
+          Collections.Notifications.insert( notifyData, ( err, res ) => {
             if ( err ) {
               console.log( "error doing initial report inserts", err.reason );
             } else {
